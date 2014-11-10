@@ -11,7 +11,7 @@ public class SenbeiMakerGame {
 			System.out.print("<");
 			baff = in.readLine();     //キーボード入力の読み込み
 			if (baff.equals("make")) {   //make処理を書く
-				makeSenbei();//せんべい焼くぜ
+				maker.makeSenbei();//せんべい焼くぜ
 				
 			}
 			else if (baff.equals("item")) {   //アイテム作成処理
@@ -21,7 +21,7 @@ public class SenbeiMakerGame {
 				baff = in.readLine();    //キーボード入力の読み込み
 				
 				//アイテム作成処理
-				makePowerItem(baff);
+				maker.makePowerItem(baff);
 			}
 			else if (baff.equals("pwup")) {
 				System.out.println("PowerupItem select");
@@ -30,7 +30,7 @@ public class SenbeiMakerGame {
 				baff = in.readLine();    //キーボード入力の読み込み
 				
 				//パワーアップ処理
-				developPowerupItem();
+				maker.developPowerupItem();
 				
 			}
 			else if (baff.equals("show")) {    //showの処理どうすりゃいい

@@ -1,5 +1,5 @@
 
-public class PowerupItem_344829 {
+public class PowerupItem {
 	/*各パワーアップアイテムを表す定数*/
 	static final int HAND = 1;
 	static final int JIJII = 2;
@@ -13,7 +13,7 @@ public class PowerupItem_344829 {
 	private int type;      //アイテムの種類
 	private double ability;   //現在の性能値
 	
-	public PowerupItem_344829(int type) {
+	public PowerupItem(int type) {
 		this.type = type;
 		ability = ITEMABI[type - 1];
 	}
