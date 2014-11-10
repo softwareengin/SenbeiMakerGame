@@ -6,14 +6,14 @@
  * アイテムを入れる配列の後ろにあるアイテムは（あとに装着したアイテム）パワーアップされにくい
  */
 
-public class SenbeiMaker_344829 {
+public class SenbeiMaker{
 	private int senbeiNum;    //せんべいの枚数を表す  
 	private int ability;      //製造機の初期能力を表す
 	private int itemabi;      //パワーアップアイテムの合計能力を表す
-	private PowerupItem_344829 powItem[] = new PowerupItem_344829[256];  
+	private PowerupItempowItem[] = new PowerupItem[256];  
 	private int itemNum;   //パワーアップアイテムの数を表す
 	
-	public SenbeiMaker_344829(int abi) { 
+	public SenbeiMaker(int abi) { 
 		ability = abi;      //製造機の初期値を設定
 		senbeiNum = 0;
 		itemNum = 0;
@@ -30,15 +30,21 @@ public class SenbeiMaker_344829 {
 		return senbeiNum;
 	}
 	
+	public void makePowerupItem(int type) {  
+		if (type < 1 || type > 5) return;//不正な値の場合何もしない  
+		if (itemNum > 256) return;   
+		if (senbeiNum < PowerupItem.ITEMCOST[type - 1]) 
+		}
 
 	public void makePowerupItem(int type) {     //パワーアップアイテム追加処理
 		/*アイテム保有数が限界の時、せんべいが足りない時　処理終了*/
 		if (itemNum >= 256) return;   
-		if (senbeiNum < PowerupItem_344829.ITEMCOST[type - 1]) 
+		if (senbeiNum < PowerupItem.ITEMCOST[type - 1]) 
 			return;
+			
 		
-		powItem[itemNum] = new PowerupItem_344829(type);
-		senbeiNum -= PowerupItem_344829.ITEMCOST[type - 1];   //せんべいの消費
+		powItem[itemNum] = new PowerupItem(type);
+		senbeiNum -= PowerupItem.ITEMCOST[type - 1];   //せんべいの消費
 		itemabi += powItem[itemNum].getAbility();           //アイテム性能をパワーアップ
 		
 		itemNum++;     //アイテム保有数を+１
@@ -46,8 +52,9 @@ public class SenbeiMaker_344829 {
 		printMakeItem(type);
 	}
 	
-	public void developPowerupItem(int type) {   //せんべいがある限りしていしたアイテムを強化
-		int cost = PowerupItem_344829.ITEMCOST[type - 1] * 10;   //強化に必要なせんべいの枚数を計算
+	public void developPowerupItem(int type) {   
+		if (type < 1 || type > 5) return;//不正な値の場合何もしない 
+		int cost = PowerupItem.ITEMCOST[type - 1] * 10;   //強化に必要なせんべいの枚数を計算
 		itemabi = 0;     //アイテムの能力を初期化
 		
 		while (senbeiNum > cost) {    //パワーアップできそうなら以下の処理を繰り返す
