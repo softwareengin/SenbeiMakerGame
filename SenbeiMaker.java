@@ -19,7 +19,8 @@ public class SenbeiMaker {
 		return senbeiNum;
 	}
 	
-	public void makePowerupItem(int type) {    
+	public void makePowerupItem(int type) {  
+		if (type < 1 || type > 5) return;//不正な値の場合何もしない  
 		if (itemNum > 256) return;   
 		if (senbeiNum < PowerupItem.ITEMCOST[type - 1]) 
 			return;
@@ -33,6 +34,7 @@ public class SenbeiMaker {
 	}
 	
 	public void developPowerupItem(int type) {   
+		if (type < 1 || type > 5) return;//不正な値の場合何もしない 
 		int cost = PowerupItem.ITEMCOST[type - 1] * 10;
 		while (senbeiNum > cost) {
 			senbeiNum -= cost;  
